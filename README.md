@@ -1,2 +1,2 @@
-# class_vis_term_project
-My term project for my Visualizations class:
+# Visualization Term Project: AR/VR Representation of ADS-B Data #
+
