@@ -159,5 +159,15 @@ def main(file_info: Tuple[str, str, int, str], ideal_value: float, num_assemblie
 
 
 if __name__ == '__main__':
-    main((f'/home/esarver/Downloads/WallThicknessData_Real.xlsx', 'DataBase', 2019, 'Above SRC'), ideal_value=4.7,
-         num_assemblies=61, num_rows=11)
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument("file", help="The Excel file to open", type=str)
+    parser.add_argument("sheet", help="The sheet in the Excel file that contains a DB-style record", type=str)
+    parser.add_argument("year", help="The year the data was taken", type=int)
+    parser.add_argument("label", help="The label of the data", type=str)
+    parser.add_argument("ideal_value", help="The ideal value for the data", type=float)
+    parser.add_argument("num_assemblies", help="The number of assemblies.", type=int)
+    parser.add_argument("num_rows", help="The number of rows in each assembly", type=int)
+    args = parser.parse_args()
+    main((args.file, args.sheet, args.year, args.label), ideal_value=args.ideal_value,
+         num_assemblies=args.num_assemblies, num_rows=args.num_rows)
