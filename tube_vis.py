@@ -77,21 +77,18 @@ class Frh:
         """
         if tube.left:
             self.grid[self.row_map[tube.row]][self.assembly_map[tube.assembly] + 1] = tube.left
-            self.grid[self.row_map[tube.row]-1][self.assembly_map[tube.assembly] + 1] = tube.left
-            self.grid[self.row_map[tube.row]+1][self.assembly_map[tube.assembly] + 1] = tube.left
-
+            self.grid[self.row_map[tube.row] - 1][self.assembly_map[tube.assembly] + 1] = tube.left
+            self.grid[self.row_map[tube.row] + 1][self.assembly_map[tube.assembly] + 1] = tube.left
 
         if tube.right:
             self.grid[self.row_map[tube.row]][self.assembly_map[tube.assembly] - 1] = tube.right
-            self.grid[self.row_map[tube.row]-1][self.assembly_map[tube.assembly] - 1] = tube.right
-            self.grid[self.row_map[tube.row]+1][self.assembly_map[tube.assembly] - 1] = tube.right
+            self.grid[self.row_map[tube.row] - 1][self.assembly_map[tube.assembly] - 1] = tube.right
+            self.grid[self.row_map[tube.row] + 1][self.assembly_map[tube.assembly] - 1] = tube.right
 
         if tube.center:
             self.grid[self.row_map[tube.row] - 1][self.assembly_map[tube.assembly]] = tube.center
-            self.grid[self.row_map[tube.row] - 1][self.assembly_map[tube.assembly]-1] = tube.center
-            self.grid[self.row_map[tube.row] - 1][self.assembly_map[tube.assembly]+1] = tube.center
-
-
+            self.grid[self.row_map[tube.row] - 1][self.assembly_map[tube.assembly] - 1] = tube.center
+            self.grid[self.row_map[tube.row] - 1][self.assembly_map[tube.assembly] + 1] = tube.center
 
     def show(self) -> None:
         """
@@ -160,6 +157,7 @@ def main(file_info: Tuple[str, str, int, str], ideal_value: float, num_assemblie
 
 if __name__ == '__main__':
     import argparse
+
     parser = argparse.ArgumentParser()
     parser.add_argument("file", help="The Excel file to open", type=str)
     parser.add_argument("sheet", help="The sheet in the Excel file that contains a DB-style record", type=str)
@@ -169,5 +167,6 @@ if __name__ == '__main__':
     parser.add_argument("num_assemblies", help="The number of assemblies.", type=int)
     parser.add_argument("num_rows", help="The number of rows in each assembly", type=int)
     args = parser.parse_args()
+
     main((args.file, args.sheet, args.year, args.label), ideal_value=args.ideal_value,
          num_assemblies=args.num_assemblies, num_rows=args.num_rows)
